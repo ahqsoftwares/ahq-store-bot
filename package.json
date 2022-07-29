@@ -1,0 +1,17 @@
+{
+  "name": "ahq-store-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ahqsoftwares/ahq-store-bot.git",
+  "author": "AHQMiness",
+  "scripts": {
+    "test": "node test",
+    "start": "node start",
+    "install": "yarn"
+  },
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "eris": "^0.17.1"
+  }
+}
