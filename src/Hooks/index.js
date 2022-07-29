@@ -2,10 +2,12 @@ module.exports = function init(client) {
          const 
          app = require("express")(),
          bodyParser = require("body-parser"),
+         chalk = require("chalk"),
          types = ["issues", "push", "issue_comment"];
 
          app.use(bodyParser.json());
          app.listen(1109);
+         console.log(chalk.yellow("Server is Ready!"))
 
          app
          .post("/", (req, res) => {

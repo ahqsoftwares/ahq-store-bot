@@ -5,7 +5,8 @@ chalk = require("chalk"),
 client = new eris(`Bot ${process.env.token}`, {
          intents: ["all"]
 }),
-commands = require("./client/commands.js");
+commands = require("./client/commands.js"),
+github = require("./Hooks/index");
 let
 errors = [];
 
@@ -19,6 +20,7 @@ client.on("ready", async() => {
          commands.forEach(async([json, type]) => {
                   client.createGuildCommand("907506731662319636", json, type)
          });
+         github(client);
 });
 client.on("messageCreate", async(msg) => {
          if (msg?.content === "a!errors" && msg?.member?.id === "849690256945184828") {
