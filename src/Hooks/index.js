@@ -16,7 +16,7 @@ module.exports = function init(client) {
                            id: process.env[`hookId`],
                            token: process.env[`hookToken`]
                   };
-                  const type = req.headers[`X-GitHub-Event`];
+                  const type = req.headers[`x-github-event`];
                   console.log(payload, type);
                   if (types.includes(type)) {
                            require(`./types/${type}`)(payload, client);
