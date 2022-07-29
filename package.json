@@ -5,13 +5,15 @@
   "repository": "https://github.com/ahqsoftwares/ahq-store-bot.git",
   "author": "AHQMiness",
   "scripts": {
-    "test": "node test",
-    "start": "node start",
-    "install": "yarn"
+    "start": "node src/index",
+    "checkout": "yarn",
+    "dev": "node dev.js"
   },
   "license": "ISC",
   "private": true,
   "dependencies": {
+    "chalk": "^3.0.0-beta.2",
+    "dotenv": "^16.0.1",
     "eris": "^0.17.1"
   }
 }
