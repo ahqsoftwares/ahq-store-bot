@@ -19,7 +19,8 @@ module.exports = function init(client) {
                   const type = req.headers[`x-github-event`];
                   console.log(payload, type);
                   if (types.includes(type)) {
-                           require(`./types/${type}`)(payload, client);
+                           let app = require(`./types/${type}`);
+                           app(payload, client);
                   }
                   res.status(200).json({});
          })

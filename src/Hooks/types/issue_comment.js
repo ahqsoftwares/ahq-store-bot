@@ -1,3 +1,3 @@
-function handle(payload, client) {
-         
+module.exports = function handle({commits}, client) {
+
 }

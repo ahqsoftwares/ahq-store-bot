@@ -1,36 +1,39 @@
-function handle({commits}, client) {
-         const {YELLOW} = require("./colors");
+module.exports = function handle({commits, id, token}, client) {
+         const {GREEN} = require("./colors");
          let mapped = commits.map((commit) => [commit.added, commit.removed, commit.modified, commit.author.name]),
-         added = mapped.map(([a, b, c, d]) => a).join(", "),
-         removed = mapped.map(([a, b, c, d]) => b).join(", "),
-         modified = mapped.map(([a, b, c, d]) => c).join(", "),
-         contributors;
-         mapped.map(([a, b, c , d]) => `[${d}](https://github.com/${d})`).forEach((e) => contributors.push(e));
+         added = {},
+         removed = {},
+         modified = {},
+         contributors = {};
+         mapped.map(([a, b, c, d]) => a).forEach((e) => added[e] = 0);
+         mapped.map(([a, b, c, d]) => b).forEach((E) => removed[E] = 0);
+         mapped.map(([a, b, c, d]) => c).forEach((E) => modified[E] = 0);
+         mapped.map(([a, b, c , d]) => `[${d}](https://github.com/${d})`).forEach((e) => {contributors[e] = 0;});
 
 
 
-         client.executeWebhook(payload.id, payload.token, {
+         client.executeWebhook(id, token, {
                   embeds: [{
                            title: `New Push on master!`,
-                           color: YELLOW,
+                           color: GREEN,
                            description: "Commit Details",
                            fields: [{
-                                    name: "Added",
-                                    value: added,
+                                    name: "Files Added",
+                                    value: `**${Object.keys(added).join(", ")}**`,
                                     inline: true
                            }, {
-                                    name: "Removed",
-                                    value: removed,
+                                    name: "Files Removed",
+                                    value: `**${Object.keys(removed).join(", ")}**`,
                                     inline: true
                            }, {
-                                    name: "Modified",
-                                    value: modified,
+                                    name: "Files Modified",
+                                    value: `**${Object.keys(modified).join(", ")}**`,
                                     inline: true
-                           }, {
-                                    name: "Contributors",
-                                    value: contributors.join(", "),
-                                    inline: false
                            }]
+                  }, {
+                           title: "Contributors",
+                           description: `***${Object.keys(contributors).join(", ")}***`,
+                           color: GREEN
                   }],
                   username: "AHQ Store Github Push"
          });
