@@ -23,8 +23,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm init -y
-    - run: npm i --save-dev yarn
+        cache: 'yarn'
     - run: yarn
     - run: yarn run test --if-present
